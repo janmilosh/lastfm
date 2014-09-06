@@ -1,0 +1,16 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Music Events{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+  {% block content %}
+    <h1>Music Events content.</h1>
+  {% endblock %}
+
+</body>
+</html>
