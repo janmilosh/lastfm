@@ -80,6 +80,13 @@ ul {
   margin: 0 auto;
 }
 
+.name {
+  width: 60%;
+  float: left;
+}
+
+
+
 /***********************************/
 /*       Font related styles       */
 /***********************************/
@@ -285,16 +292,29 @@ ul.errorlist li {
 }
 
 .panel h2 {
-  background: #F4AB7E;
   color: white;
+  margin: 0 0 0 -15px;
+}
+
+.panel .row.panel-header {
+  background: #F4AB7E;
   padding: 10px 20px;
+}
+
+.panel .row {
+  border-bottom: 1px solid #e1e1e1;
+  border-left: 1px solid #e1e1e1;
+  border-right: 1px solid #e1e1e1;
   margin: 0;
+  padding: 10px 0;
 }
 
 .panel h3 {
-  border-top: 1px solid #e1e1e1;
   margin: 0;
-  padding: 10px 20px;
+}
+
+.panel p {
+  margin: 0 0 0 -15px;
 }
 
 .panel-inner {

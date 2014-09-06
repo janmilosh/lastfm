@@ -1,5 +1,30 @@
 {% extends 'site_base.html' %}
 
 {% block content %}
-  <h1>This is the homepage.</h1>
+
+  <div class="wrapper">
+
+    <h1>Find nearby music events: </h1>
+    <button id="get_location">Find my location</button>
+
+    <h2>Input a location</h2>
+    <div id="location"></div>
+    <div class="row">
+      <div class="col col-60 centered">
+        <div class="panel">
+          <div class="row clearfix panel-header">
+            <div class="col col-60"><h2>Locations</h2></div>
+            <div class="col col-40"><h2>Date</h2></div>
+          </div>
+          {% for location in locations %}
+            <div class="row clearfix">
+              <div class="col col-60"><h3><a href="/">{{ location.name }}</a></h3></div>
+              <div class="col col-40"><p>{{ location.timestamp }}</p></div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
 {% endblock %}
