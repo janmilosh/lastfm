@@ -1,0 +1,39 @@
+{% extends "site_base.html" %}
+
+{% block title %}Log In{% endblock %}
+
+{% block menu %}
+  <ul>
+    <li>
+      <a class="menu-button" href="/register/">Register</a>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block content %}
+  
+  <div class="row">
+    <div class="col col-40 centered">
+      <div class="panel auth-panel">
+        <h2>User Login</h2>
+        <div class="panel-inner">
+          {% if form.errors %}
+            <p class="error">Invalid username or password</p>
+          {% endif %}
+          
+          <form action="/auth/" method="post">
+            {% csrf_token %}
+            <label for="username">Username: </label>
+            <input type="text" name="username" value="" id="username">
+            <label for="password">Password: </label>
+            <input type="password" name="password" value="" id="password">
+
+            <input type="submit" value="Log In">
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}

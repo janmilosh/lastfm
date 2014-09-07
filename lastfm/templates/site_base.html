@@ -11,17 +11,24 @@
   <div class="header">
     <h1><a href="/">Music Events</a></h1>
     <div class="header-nav">
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/">Other Link1</a>
-        </li>
-        <li>
-          <a href="/">Other Link2</a>
-        </li>
-      </ul>
+      {% block menu %}
+        <ul>
+          
+          {% if user.is_authenticated %}
+            <li>
+              <a class="menu-button" href="/logout/">Log Out</a>
+            </li>
+          {% else %}
+            <li>
+              <a class="menu-button" href="/login/">Log In</a>
+            </li>
+            <li>
+              <a class="menu-button" href="/register/">Register</a>
+            </li>
+          {% endif %}
+          
+        </ul>
+      {% endblock %}
     </div>
   </div>
 

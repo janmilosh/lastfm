@@ -1,0 +1,29 @@
+{% extends "site_base.html" %}
+
+{% block menu %}
+  <ul>
+    <li>
+      <a class="menu-button" href="/login/">Log In</a>
+    </li>
+    <li>
+      <a class="menu-button" href="/register/">Register</a>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block content %}
+  
+  <div class="row">
+    <div class="col col-50 centered">
+      <div class="panel auth-panel">
+        
+        <h2>Your login details are invalid.</h2>
+        <div class="panel-inner">
+          <p class="login-text">Click <a href="/login/">here</a> to try again.</p> 
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}

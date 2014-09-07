@@ -356,6 +356,17 @@ ul.errorlist li {
   margin: 0 0 0 -15px;
 }
 
+.auth-panel {
+  margin-top: 40px;
+}
+
+.panel.auth-panel h2 {
+  background: #F4AB7E;
+  color: white;
+  padding: 10px 20px;
+  margin: 0;
+}
+
 .panel .row.panel-header {
   background: #F4AB7E;
   padding: 10px 20px;
