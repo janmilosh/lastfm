@@ -2,7 +2,9 @@ $(document).ready(function() {
   
   var locationText = $('#location');
   var useSubmit = $('#use_submit');
-  var hiddenInput = $('#set_location');
+  var hiddenLocationInput = $('#set_location');
+  var hiddenCityInput = $('#set_city');
+  var hiddenStateInput = $('#set_state');
 
   //Click 'get my location' button to get location based on IP address
   //This returns the latitude and longitude.
@@ -29,11 +31,17 @@ $(document).ready(function() {
     var lon = position.coords.longitude;
     
     $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon + '&location_type=ROOFTOP&result_type=street_address&key=' + API_KEY, function(data) {
-      var location = data.results[0].address_components[2].long_name + ', ' + data.results[0].address_components[5].long_name;
+      var city = data.results[0].address_components[2].long_name;
+      var state = data.results[0].address_components[5].long_name;
+      var location = city + ', ' + state;
+      
       useSubmit.hide().fadeIn(1000);
       locationText.hide().fadeIn(1000);
       locationText.text('Location: ' + location);
-      hiddenInput.attr('value', location);
+      
+      hiddenCityInput.attr('value', city);
+      hiddenStateInput.attr('value', state);
+      hiddenLocationInput.attr('value', location);
       useSubmit.html('<input type="submit" value="Use">').fadeIn();
     });
   };

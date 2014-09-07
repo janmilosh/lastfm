@@ -10,6 +10,9 @@ from events.models import Location
 def home(request):
     locations = Location.objects.all()
 
+    if not request.user.is_authenticated():
+        return redirect('/login/')
+
     return render(request, "home.html", ({
         'locations': locations
     }))

@@ -2,37 +2,49 @@
 
 {% block content %}
 
-  <div class="homepage wrapper">
-    <h1>Find nearby music events: </h1>
-    
-    <div class="row clearfix">
-      <div class="col col-30">
-        <button id="get_location">Get my location</button>
-      </div>
-      <div class="col col-60">
-        <form action="/events/set_location/" method="post">
-          <h3><span id="location"></span>
-            {% csrf_token %}
-            <input type="hidden" name="name" id="set_location" value="">
-            <span id="use_submit" class="use_submit"></span>
-          </h3>
-        </form>
-      </div>
-    </div>
-   
-    <h2>Or Input a location:</h2>
-    
-    <div class="panel">
-      <div class="row clearfix panel-header">
-        <div class="col col-60"><h2>Or use a previous location:</h2></div>
-      </div>
-      {% for location in locations %}
-        <div class="row clearfix">
-          <div class="col col-60"><h3><a href="/">{{ location.name }}</a></h3></div>
-          <div class="col col-40"><p>{{ location.timestamp }}</p></div>
+  {% if user.is_authenticated %}
+
+    <div class="homepage wrapper">
+      <h1>Find nearby music events: </h1>
+      
+      <div class="row clearfix">
+        <div class="col col-30">
+          <button id="get_location">Get my location</button>
         </div>
-      {% endfor %}
+        <div class="col col-60">
+          <form action="/events/set_location/" method="post">
+            <h3><span id="location"></span>
+              {% csrf_token %}
+              <input type="hidden" name="city" id="set_city" value="">
+              <input type="hidden" name="state" id="set_state" value="">
+              <input type="hidden" name="name" id="set_location" value="">
+              <span id="use_submit" class="use_submit"></span>
+            </h3>
+          </form>
+        </div>
+      </div>
+     
+      <h2>Or Input a location:</h2>
+      
+      <div class="panel">
+        <div class="row clearfix panel-header">
+          <div class="col col-60"><h2>Or use a previous location:</h2></div>
+        </div>
+        {% for location in locations %}
+          <div class="row clearfix">
+            <div class="col col-60"><h3>{{ location.city }}, {{ location.state }}</h3></div>
+            <div class="col col-40"><a href="/events/get_events/{{ location.id }}/"><button class="use-previous">Use</button></a></div>
+          </div>
+        {% endfor %}
+
+        {% if not locations %}
+          <div class="row clearfix">
+            <div class="col col-100"><h3 class="panel-message">There are no previous locations.</h3></div>
+          </div>
+        {% endif %}
+      </div>
     </div>
-  </div>
+
+  {% endif%}
   
 {% endblock %}
