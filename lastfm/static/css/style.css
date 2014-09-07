@@ -388,6 +388,10 @@ ul.errorlist li {
   margin: 0 0 0 -15px;
 }
 
+.panel p.login-text {
+  margin: 0 5px 20px 5px;
+}
+
 .panel-inner {
   padding: 20px 20px 4px;
 }
