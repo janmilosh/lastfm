@@ -111,7 +111,7 @@ h1, h2, h3, p, ul li, a, label {
 }
 
 h1, h2, h3 {
-  color: #543C81;
+  color: #0185AA;
 }
 
 p, ul li {
@@ -124,7 +124,6 @@ h1, h2, h3, p {
 
 h1 {
   margin-bottom: 30px;
-  color: #F4AB7E;
 }
 
 h2 a {
@@ -160,12 +159,12 @@ p.error {
 
 a {
   text-decoration: none;
-  color: #5D3AD9;
+  color: #0DA5CF;
 }
 
 a:hover {
   text-decoration: none;
-  color: #5D3AD9;
+  color: #0DA5CF;
 }
 
 hr {
@@ -201,14 +200,14 @@ input[type="submit"] {
   font-size: 18px;
   color: white;
   border: none;
-  background: #52CB88;
+  background: #CBC152;
   margin-bottom: 20px;
   margin-top: 2px;
   cursor: pointer;
 }
 
 input[type="submit"]:hover {
-  background: #48B679;
+  background: #E0D445;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   -o-transition: all .5s ease-in-out;
@@ -218,13 +217,13 @@ input[type="submit"]:hover {
 .location-input input[type="submit"] {
   width: 50px;
   height: 30px;
-  background: #FA8B47;
+  background: #3FAECD;
   float: right;
   margin-bottom: 40px;
 }
 
 .location-input input[type="submit"]:hover {
-   background: #F4AB7E;
+   background: #5A94A4;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   -o-transition: all .5s ease-in-out;
@@ -244,12 +243,12 @@ button {
 }
 
 button#get_location {
-  background: #5E4AA4;
+  background: #B1235C;
   margin-bottom: 40px;
 }
 
 button#get_location:hover {
-  background: #8772D3;
+  background: #D6236A;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   -o-transition: all .5s ease-in-out;
@@ -260,7 +259,7 @@ button#get_location:hover {
 button.use-previous {
   width: 50px;
   height: 30px;
-  background: #FA8B47;
+  background: #3FAECD;
 }
 
 button.use-previous,
@@ -273,7 +272,7 @@ button.delete {
 
 .use_submit input[type="submit"]:hover,
 button.use-previous:hover {
-  background: #F4AB7E;
+  background: #5A94A4;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   -o-transition: all .5s ease-in-out;
@@ -336,7 +335,7 @@ ul.errorlist li {
   top: 0;
   height: 65px;
   width: 100%;
-  background: #8772D3;
+  background: #B1235C;
   padding: 14px 30px 0;
 }
 
@@ -364,6 +363,8 @@ ul.errorlist li {
 
 .header-nav ul li {
   display: inline-block;
+  color: white;
+  font-size: 16px;
 }
 
 .header-nav ul li a {
@@ -375,7 +376,7 @@ ul.errorlist li {
 
 .header-nav ul li a.menu-button {
   background: #f1f1f1;
-  color: #5D3AD9;
+  color: #0DA5CF;
   text-transform: lowercase;
   border-radius: 3px;
   margin-left: 20px;
@@ -386,7 +387,7 @@ ul.errorlist li {
 /***********************************/
 
 .panel {
-  background: #F8F4F2;
+  background: #f1f1f1;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
   margin-bottom: 30px;
 }
@@ -401,14 +402,14 @@ ul.errorlist li {
 }
 
 .panel.auth-panel h2 {
-  background: #F4AB7E;
+  background: #5A94A4;
   color: white;
   padding: 10px 20px;
   margin: 0;
 }
 
 .panel .row.panel-header {
-  background: #F4AB7E;
+  background: #5A94A4;
   padding: 10px 20px;
 }
 

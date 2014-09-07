@@ -8,8 +8,8 @@ from forms import MyRegistrationForm
 from events.models import Location
 
 def home(request):
-    locations = Location.objects.all()
-
+    locations = Location.objects.filter(user=request.user)
+    
     if not request.user.is_authenticated():
         return redirect('/login/')
 

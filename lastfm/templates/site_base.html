@@ -16,6 +16,9 @@
           
           {% if user.is_authenticated %}
             <li>
+              {{ user }}
+            </li>
+            <li>
               <a class="menu-button" href="/logout/">Log Out</a>
             </li>
           {% else %}
