@@ -38,6 +38,10 @@ ul {
   padding: 0 15px;
 }
 
+.homepage.wrapper {
+  width: 700px;
+}
+
 .row {
   margin-left: -15px;
   margin-right: -15px;
@@ -45,6 +49,16 @@ ul {
 
 .col {
   padding: 0 15px;
+}
+
+.col-10 {
+  width: 10%;
+  float: left;
+}
+
+.col-30 {
+  width: 30%;
+  float: left;
 }
 
 .col-40 {
@@ -108,6 +122,10 @@ h1, h2, h3, p {
   margin: 0 0 16px;
 }
 
+h1 {
+  margin-bottom: 30px;
+}
+
 h2 a {
   color: white;
   display: inline-block;
@@ -120,6 +138,10 @@ h2 a {
 
 h2 a:hover {
   color: white;
+}
+
+h3#location {
+  margin-top: 10px;
 }
 
 p, label {
@@ -171,18 +193,6 @@ input[type="email"] {
   padding: 0 10px;
 }
 
-select[multiple] {
-  width: 100%;
-  font-size: 16px;
-  color: #555;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  margin-top: 2px;
-  border: 1px solid #ccc;
-  height: 200px;
-  padding: 10px;
-}
-
 input[type="submit"] {
   width: 100%;
   height: 40px;
@@ -202,6 +212,56 @@ input[type="submit"]:hover {
   -moz-transition: all .5s ease-in-out;
   -o-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out;
+}
+
+button {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 18px;
+  color: white;
+  border: none;
+  margin-bottom: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+button#get_location {
+  background: #5E4AA4;
+  margin-bottom: 32px;
+}
+
+button#get_location:hover {
+  background: #8772D3;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.use_button button {
+  width: 50px;
+  height: 30px;
+  background: #FA8B47;
+}
+
+.use_button button:hover {
+  background: #F4AB7E;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+#location {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+button:active,
+button:focus {
+  outline: none;
 }
 
 label {

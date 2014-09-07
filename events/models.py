@@ -8,4 +8,4 @@ class Location(models.Model):
         return self.name
 
     class Meta:
-        ordering = ('timestamp',)
+        ordering = ('-timestamp',)
