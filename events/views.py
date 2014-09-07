@@ -4,7 +4,7 @@ import datetime
 
 from events.models import Location
 
-def save_location(request):
+def set_location(request):
     city = request.POST.get('city', '')
     state = request.POST.get('state', '')
 

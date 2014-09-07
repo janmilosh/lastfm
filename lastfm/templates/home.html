@@ -24,7 +24,19 @@
         </div>
       </div>
      
-      <h2>Or Input a location:</h2>
+      <div class="row clearfix">
+        <div class="col col-30"><h3>Or Input a location:</h3></div>
+        <div class="col col-40">
+          <form class="location-input" action="/events/set_location/" method="post">
+            
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="city" required>
+            <input type="text" name="state" placeholder="state" required>
+            <input type="submit" value="Use">
+            
+          </form>
+        </div>
+      </div>
       
       <div class="panel">
         <div class="row clearfix panel-header">
