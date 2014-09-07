@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 import datetime
 
@@ -24,3 +24,11 @@ def get_events(request, location_id=1):
     return render(request, 'events/show_events.html', ({
         'location': location.name
     }))
+
+def delete(request, location_id=1):
+    location = get_object_or_404(Location, id=location_id)
+
+    location.delete()
+
+    return redirect('/')
+
