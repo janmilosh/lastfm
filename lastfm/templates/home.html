@@ -10,12 +10,16 @@
         <button id="get_location">Get my location</button>
       </div>
       <div class="col col-60">
-        <h3><span id="location"></span><span id="use_button" class="use_button"></span></h3>
+        <form action="/events/set_location/" method="post">
+          <h3><span id="location"></span>
+            {% csrf_token %}
+            <input type="hidden" name="name" id="set_location" value="">
+            <span id="use_submit" class="use_submit"></span>
+          </h3>
+        </form>
       </div>
-      
     </div>
-
-    
+   
     <h2>Or Input a location:</h2>
     
     <div class="panel">

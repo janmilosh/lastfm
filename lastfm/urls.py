@@ -5,4 +5,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'lastfm.views.home', name='home'),
+    url(r'^events/', include('events.urls')),
 )
