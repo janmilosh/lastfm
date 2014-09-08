@@ -5,7 +5,7 @@
 body {
   margin: 0;
   background: #eee;
-  background: url('../images/background.png');
+  background: url('../images/background.png') fixed;
   padding-top: 65px;
 }
 
@@ -61,6 +61,11 @@ ul {
   float: left;
 }
 
+.col-33 {
+  width: 33%;
+  float: left;
+}
+
 .col-40 {
   width: 40%;
   float: left;
@@ -73,6 +78,11 @@ ul {
 
 .col-60 {
   width: 60%;
+  float: left;
+}
+
+.col-67 {
+  width: 67%;
   float: left;
 }
 
@@ -99,7 +109,20 @@ ul {
   float: left;
 }
 
+.google-maps {
+  position: relative;
+  padding-bottom: 75%; // This is the aspect ratio
+  height: 0;
+  overflow: hidden;
+}
 
+.google-maps iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
 
 /***********************************/
 /*       Font related styles       */
@@ -386,10 +409,24 @@ ul.errorlist li {
 /*          panel styles           */
 /***********************************/
 
-.panel {
+.panel, .event-panel {
   background: #f1f1f1;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
   margin-bottom: 30px;
+}
+
+.event-panel {
+  padding: 20px 20px 5px;
+}
+
+.event-panel h2 {
+  margin: 15px 0 5px;
+}
+
+.event-panel img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 .panel h2 {

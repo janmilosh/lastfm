@@ -1,21 +1,102 @@
 {% extends 'site_base.html' %}
 
+{% block map_script %}
+  <style>
+      #map-canvas {
+        height: 300px;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    
+{% endblock %}
+
 {% block content %}
 
   {% if user.is_authenticated %}
 
     <div class="wrapper">
-      <h1>Events</h1>
+      <h1>{{ location.city }}, {{ location.state }} area events</h1>
+
+      {% if events.message %}
+
+        <p>{{ events.message }} <a href="/">back</a></p>
       
-      <div class="row clearfix">
-        <div class="col col-70">
-         <h2>{{ location }}</h2>
-         <p>{{eventsdata}}</p>
+      {% else %}
+      
+        <div class="row clearfix">
+          <div class="col col-33">
+            
+            {% for event in events %}
+              <div class="event-panel">
+                <img src="{{ event.image|safe }}">
+                <h2>{{ event.title }}</h2>
+                <p><small>{{ event.date }}</small><br><a href="{{ event.url }}">{{ event.venue }}</a><br>{{ event.street }}<br>{{ event.city }}</p>
+              </div>
+            {% endfor %}
+            
+          </div>
+          <div class="col col-67">
+            <div class="google-maps">
+              <div id="map" style="width: 600px; height: 400px;"></div>
+            </div>
+          </div>          
         </div>
-        
-      </div>
+      {% endif %}
+    
     </div>
 
   {% endif %}  
-  
+
 {% endblock %}
+
+{% block special_scripts %}
+
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  <script>
+    function initialize() {
+      var mapCenter = new google.maps.LatLng({{location.lat}},{{location.lon}});
+      var mapOptions = {
+        zoom: 12,
+        center: mapCenter
+      }
+      var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      var bounds = new google.maps.LatLngBounds();
+      bounds.extend(mapCenter);
+      var markers = [];
+      
+      {% for event in events %}
+        var i = {{ forloop.counter0 }};
+        var marker = markers[i]
+        marker = new google.maps.Marker({
+          position: {lat: {{event.lat}}, lng: {{event.lon}}},
+          map: map,
+          title: '{{event.venue}}'});
+        
+        bounds.extend(marker.position);
+
+        var infowindow = new google.maps.InfoWindow({
+          maxWidth: 160
+        });
+
+        var content = '<img src="{{ event.image|safe }}"><h2>{{ event.title }}</h2><p><small>{{ event.date }}</small><br><a href="{{ event.url }}">{{ event.venue }}</a><br>{{ event.street }}<br>{{ event.city }}</p>'
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+
+      {% endfor %}
+
+      map.fitBounds(bounds);
+    }
+
+    
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+
+{% endblock %}
+
+

@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'lastfm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'lastfm',
+        'NAME': 'lastfm_db',
     }
 }
 

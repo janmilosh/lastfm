@@ -1,12 +1,14 @@
 from django.contrib.auth import logout
 from django.shortcuts import redirect, render, render_to_response
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, login, authenticate 
 from django.core.context_processors import csrf
 from forms import MyRegistrationForm
 
 from events.models import Location
 
+@login_required(login_url='/login/')
 def home(request):
     locations = Location.objects.filter(user=request.user)
     
