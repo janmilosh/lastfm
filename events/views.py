@@ -70,7 +70,6 @@ def get_lat_lon(name): #from google geocode api, get lat and lon from city, stat
 def get_events_from_lastfm(lat, lon): #user latitude and longitude to get the lastfm events
 
     key =  '0e46d3e54e84eac74e6c29e3212915ac'
-    # http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat=39.9611755&long=-82.9987942&api_key=0e46d3e54e84eac74e6c29e3212915ac&format=json
     events = requests.get('http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat='+ lat + '&long=' + lon + '&api_key=' + key + '&format=json')
 
     try:

@@ -1,16 +1,5 @@
 {% extends 'site_base.html' %}
 
-{% block map_script %}
-  <style>
-      #map-canvas {
-        height: 300px;
-        margin: 0px;
-        padding: 0px
-      }
-    </style>
-    
-{% endblock %}
-
 {% block content %}
 
   {% if user.is_authenticated %}
@@ -25,23 +14,41 @@
       {% else %}
       
         <div class="row clearfix">
-          <div class="col col-33">
-            
-            {% for event in events %}
-              <div class="event-panel">
-                <img src="{{ event.image|safe }}">
-                <h2>{{ event.title }}</h2>
-                <p><small>{{ event.date }}</small><br><a href="{{ event.url }}">{{ event.venue }}</a><br>{{ event.street }}<br>{{ event.city }}</p>
-              </div>
-            {% endfor %}
-            
-          </div>
-          <div class="col col-67">
+          <div class="col col-100">
             <div class="google-maps">
-              <div id="map" style="width: 600px; height: 400px;"></div>
+              <div id="map"></div>
             </div>
           </div>          
+        </div>  
+
+        <div class="row clearfix">
+          <div class="col col-100">
+            <table>
+              
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Event</th>
+                  <th>Venue</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
+              
+              <tbody>   
+                {% for event in events %}
+                  <tr>
+                    <td>{{ event.date }}</td>
+                    <td>{{ event.title }}</td>
+                    <td><a href="{{ event.url }}">{{ event.venue }}</a></td>
+                    <td>{{ event.street }}, {{ event.city }}</td>
+                  </tr> 
+                {% endfor %}
+              </tbody>
+
+            </table>
+          </div>
         </div>
+
       {% endif %}
     
     </div>
@@ -63,37 +70,35 @@
       var map = new google.maps.Map(document.getElementById('map'), mapOptions);
       var bounds = new google.maps.LatLngBounds();
       bounds.extend(mapCenter);
-      var markers = [];
+      var marker = [];
+      var content = [];
+      var infowindow= [];
       
       {% for event in events %}
-        var i = {{ forloop.counter0 }};
-        var marker = markers[i]
-        marker = new google.maps.Marker({
+        
+        marker[{{ forloop.counter0 }}] = new google.maps.Marker({
           position: {lat: {{event.lat}}, lng: {{event.lon}}},
           map: map,
           title: '{{event.venue}}'});
         
-        bounds.extend(marker.position);
+        bounds.extend(marker[{{ forloop.counter0 }}].position);
 
-        var infowindow = new google.maps.InfoWindow({
+        infowindow[{{ forloop.counter0 }}] = new google.maps.InfoWindow({
           maxWidth: 160
         });
 
-        var content = '<img src="{{ event.image|safe }}"><h2>{{ event.title }}</h2><p><small>{{ event.date }}</small><br><a href="{{ event.url }}">{{ event.venue }}</a><br>{{ event.street }}<br>{{ event.city }}</p>'
+        content[{{ forloop.counter0 }}] = '<img class="map-image" src="{{ event.image|safe }}"><h2>{{ event.title }}</h2><p><a href="{{ event.url }}">{{ event.venue }}</a><br>{{ event.street }}<br>{{ event.city }}</p>'
 
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            infowindow.setContent(content);
-            infowindow.open(map, marker);
-          }
-        })(marker, i));
+        google.maps.event.addListener(marker[{{ forloop.counter0 }}], 'click', function() {
+          infowindow[{{ forloop.counter0 }}].setContent(content[{{ forloop.counter0 }}]);
+          infowindow[{{ forloop.counter0 }}].open(map, marker[{{ forloop.counter0 }}]);
+        });
 
       {% endfor %}
 
       map.fitBounds(bounds);
     }
 
-    
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
 
