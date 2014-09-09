@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+import dj_database_url
+
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
 STATIC_ROOT = os.path.join(SITE_ROOT, 'staticfiles')
@@ -33,12 +35,15 @@ TEMPLATE_DIRS = (
 SECRET_KEY = '#llou&ylkg47vyf5tt@w#39m^_hlqhiy!x2n6=)9+(8-n&qmm8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ADMINS = (
+   ('Jan Milosh', 'janmilosh@gmail.com'),
+)
 
+MANAGERS = ADMINS
 
 # Application definition
 
@@ -71,10 +76,7 @@ WSGI_APPLICATION = 'lastfm.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'lastfm_db',
-    }
+    'default': dj_database_url.config()
 }
 
 # Internationalization
@@ -90,3 +92,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+try:
+    from local_settings import *
+except Exception as e:
+    print e.message
