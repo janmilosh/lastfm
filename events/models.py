@@ -13,5 +13,8 @@ class Location(models.Model):
     def __unicode__(self):
         return '%s, %s' % (self.city, self.state)
 
+    def get_absolute_url(self):
+        return '/events/get_events/%i' % self.id
+
     class Meta:
         ordering = ('-timestamp',)
