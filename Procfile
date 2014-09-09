@@ -1,1 +1,1 @@
-web: gunicorn ad_tracker.wsgi --log-file -
+web: gunicorn lastfm.wsgi --log-file -
