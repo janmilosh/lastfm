@@ -95,7 +95,7 @@ USE_TZ = True
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-try:
-    from local_settings import *
-except Exception as e:
-    print e.message
+# try:
+#     from local_settings import *
+# except Exception as e:
+#     print e.message
