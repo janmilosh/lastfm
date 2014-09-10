@@ -1,0 +1,33 @@
+{% extends 'site_base.html' %}
+
+{% block content %}
+
+  {% if user.is_authenticated %}
+
+    <div class="wrapper">
+      <h1>{{ artist.name }}</h1>
+
+      {% if artist.message %}
+
+        <p>{{ artist.message }}</p>
+        <p><a href="/events/get_events/{{ location.id }}/">Back to events</a></p>
+      
+      {% else %}
+      
+        <div class="row clearfix">
+          <div class="col col-40">
+            <img class="artist" src="{{ artist.image }}">
+          </div>
+          <div class="col col-60">
+            <p>{{ artist.bio|safe }}</p>
+            <p><a href="/events/get_events/{{ location.id }}/">Back to events</a></p>
+          </div>
+        </div>
+
+      {% endif %}
+    
+    </div>
+
+  {% endif %}  
+
+{% endblock %}

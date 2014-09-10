@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.template.defaultfilters import slugify
 from django.utils import timezone
 import datetime
 from dateutil import parser
@@ -68,11 +69,10 @@ def get_lat_lon(name): #from google geocode api, get lat and lon from city, stat
     return location
 
 def get_events_from_lastfm(lat, lon): #user latitude and longitude to get the lastfm events
-
     key =  '0e46d3e54e84eac74e6c29e3212915ac'
-    events = requests.get('http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat='+ lat + '&long=' + lon + '&api_key=' + key + '&format=json')
 
     try:
+        events = requests.get('http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat='+ lat + '&long=' + lon + '&api_key=' + key + '&format=json')
         eventsdata = events.json()['events']['event']
 
         # we need to flatten this data and make it more accessible (create an array of objects)
@@ -82,9 +82,13 @@ def get_events_from_lastfm(lat, lon): #user latitude and longitude to get the la
             # Convert the time into a datetime object
             event_date = event['startDate']
             event_date = parser.parse(event_date)
+            artist = event['artists']['headliner']
+            artist_ugly = artist.replace('&', 'ampersand_symbol')
+            artist_slug = slugify(artist_ugly)
 
             event_list.append({
-                'title': event['title'],
+                'artist': artist,
+                'artist_slug': artist_slug,
                 'venue': event['venue']['name'],
                 'lat': event['venue']['location']['geo:point']['geo:lat'],
                 'lon': event['venue']['location']['geo:point']['geo:long'],
@@ -99,3 +103,29 @@ def get_events_from_lastfm(lat, lon): #user latitude and longitude to get the la
         event_list = {'message': 'There are no events, please try another location.'}
 
     return event_list
+
+def get_artist(request, artist, location_id):
+    key =  '0e46d3e54e84eac74e6c29e3212915ac'
+    artist = artist.replace('ampersand_symbol', '%26')
+    artist_unslugged = artist.replace('-', '%20')
+    
+    try:
+        artistdata = requests.get('http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&autocorrect=1&artist='+ artist_unslugged + '&api_key=' + key + '&format=json')
+
+        artistdata = artistdata.json()['artist']
+        artist = {
+            'name': artistdata['name'],
+            'image': artistdata['image'][4]['#text'],
+            'bio': artistdata['bio']['content'],
+        }
+        location = {
+            'id': location_id,
+        }
+        
+    except:
+        artist = {'message': "Sorry, we couldn't find any info on that artist."}
+
+    return render(request, 'events/show_artist.html', ({
+        'artist': artist,
+        'location': location
+    }))

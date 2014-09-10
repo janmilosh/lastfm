@@ -27,20 +27,20 @@
               
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Event</th>
+                  <th class="hide-mobile">Date</th>
+                  <th>Artist</th>
                   <th>Venue</th>
-                  <th>Address</th>
+                  <th class="hide-mobile">Address</th>
                 </tr>
               </thead>
               
               <tbody>   
                 {% for event in events %}
                   <tr>
-                    <td>{{ event.date }}</td>
-                    <td>{{ event.title }}</td>
+                    <td class="hide-mobile">{{ event.date }}</td>
+                    <td><a href="/events/get_artist/{{ event.artist_slug }}/{{ location.id }}/">{{ event.artist }}</a></td>
                     <td><a href="{{ event.url }}">{{ event.venue }}</a></td>
-                    <td>{{ event.street }}, {{ event.city }}</td>
+                    <td class="hide-mobile">{{ event.street }}, {{ event.city }}</td>
                   </tr> 
                 {% endfor %}
               </tbody>
@@ -79,7 +79,7 @@
         marker[{{ forloop.counter0 }}] = new google.maps.Marker({
           position: {lat: {{event.lat}}, lng: {{event.lon}}},
           map: map,
-          title: '{{event.venue}}'});
+          title: '{{event.artist}}'});
         
         bounds.extend(marker[{{ forloop.counter0 }}].position);
 
@@ -87,7 +87,7 @@
           maxWidth: 160
         });
 
-        content[{{ forloop.counter0 }}] = '<img class="map-image" src="{{ event.image|safe }}"><h2>{{ event.title }}</h2><p><a href="{{ event.url }}">{{ event.venue }}</a><br>{{ event.street }}<br>{{ event.city }}</p>'
+        content[{{ forloop.counter0 }}] = '<img class="map-image" src="{{ event.image|safe }}"><h2><a href="/events/get_artist/{{ event.artist_slug }}/{{ location.id }}/">{{ event.artist }}</a></h2><p><a href="{{ event.url }}">{{ event.venue }}</a><br>{{ event.street }}<br>{{ event.city }}</p>'
 
         google.maps.event.addListener(marker[{{ forloop.counter0 }}], 'click', function() {
           infowindow[{{ forloop.counter0 }}].setContent(content[{{ forloop.counter0 }}]);
@@ -103,5 +103,3 @@
   </script>
 
 {% endblock %}
-
-

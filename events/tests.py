@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.test import Client
 from django.core.urlresolvers import reverse
 
-
 from events.models import Location
 
 class EventTest(TestCase):
@@ -49,5 +48,3 @@ class EventTest(TestCase):
         login_resp = c.post('/login/', {'username': username,
                                         'password': password})
         self.assertEqual(login_resp.status_code, 200)
-
-        
