@@ -238,6 +238,11 @@ hr {
 /*           form styles           */
 /***********************************/
 
+input {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="email"] {
@@ -274,7 +279,7 @@ input[type="submit"]:hover {
 }
 
 .location-input input[type="submit"] {
-  width: 50px;
+  width: 70px;
   height: 30px;
   background: #3FAECD;
   float: right;
@@ -316,7 +321,7 @@ button#get_location:hover {
 
 .use_submit input[type="submit"],
 button.use-previous {
-  width: 50px;
+  width: 70px;
   height: 30px;
   background: #3FAECD;
 }
@@ -341,6 +346,7 @@ button.use-previous:hover {
 button.delete {
   width: 70px;
   height: 30px;
+  background: #bbb;
 }
 
 button.delete:hover {
