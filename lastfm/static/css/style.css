@@ -88,6 +88,11 @@ ul {
   float: left;
 }
 
+.col-70 {
+  width: 70%;
+  float: left;
+}
+
 .col-75 {
   width: 75%;
   float: left;
@@ -524,6 +529,7 @@ ul.errorlist li {
   .col-40,
   .col-50,
   .col-60,
+  .col-70,
   .col-75 {
     width: 100%;
     float: none;
